@@ -35,13 +35,18 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:layout_alignParentLeft="true">
 
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
                 <RadioButton
                     android:id="@+id/male_radio_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Male" />
+                    android:text="Male"
+                    android:layout_gravity="right"/>
 
                 <RadioButton
                     android:id="@+id/female_radio_button"
@@ -49,7 +54,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:layout_gravity="left"/>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -128,37 +135,42 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:layout_alignParentLeft="true">
 
-            <RadioButton
-                android:id="@+id/light_exercise_radio_button"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:text="Light" />
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/light_exercise_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="Light" />
 
-            <RadioButton
-                android:id="@+id/moderate_exercise_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:text="Moderate" />
+                <RadioButton
+                    android:id="@+id/moderate_exercise_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="Moderate" />
 
-            <RadioButton
-                android:id="@+id/heavy_exercise_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:text="Heavy" />
+                <RadioButton
+                    android:id="@+id/heavy_exercise_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="Heavy" />
 
-            <RadioButton
-                android:id="@+id/intense_exercise_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:text="Intense" />
+                <RadioButton
+                    android:id="@+id/intense_exercise_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="Intense" />
+            </RadioGroup>
 
         </LinearLayout>
 
