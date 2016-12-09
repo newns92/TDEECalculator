@@ -2,6 +2,7 @@ package com.android.nimz.tdeecalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private int daysExercise;
     private int minutesExercise;
     private int exerciseIntensity;
+    private int selectedGender;
+    private int selectedIntensity;
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
 
@@ -32,13 +35,59 @@ public class MainActivity extends AppCompatActivity {
         SeekBar userAge = (SeekBar) findViewById(R.id.age_slider);
         SeekBar userDaysExercise = (SeekBar) findViewById(R.id.exercise_days_slider);
         SeekBar userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
-        RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
-        RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
+        final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
+        final RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
+        Button bt = (Button) findViewById(R.id.calculate_button);
 
-        //Button calcButton = (Button) findViewById(R.id.calculate_button);
-        //calcButton.setOnClickListener(new OnClickListener() {
-//
-        ///}
+        /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
+//        bt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+        selectedGender = genderRadioGroup.getCheckedRadioButtonId();
+//        RadioButton selectedGenderRadioBtn = (RadioButton) findViewById(selectedGender);
+
+        // Check which Gender radio button was clicked
+        switch (selectedGender) {
+            case R.id.male_radio_button:
+                gender = 0;
+                break;
+            case R.id.female_radio_button:
+                gender = 1;
+                break;
+        }
+//        Toast.makeText(MainActivity.this,
+//                String.valueOf(gender), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
+//        bt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+        selectedIntensity = intensityRadioGroup.getCheckedRadioButtonId();
+
+        switch (selectedIntensity) {
+            case R.id.light_exercise_radio_button:
+                exerciseIntensity = 1;
+                break;
+            case R.id.moderate_exercise_radio_button:
+                exerciseIntensity = 2;
+                break;
+            case R.id.heavy_exercise_radio_button:
+                exerciseIntensity = 3;
+                break;
+            case R.id.intense_exercise_radio_button:
+                exerciseIntensity = 4;
+                break;
+            //IF DAYS EXERCISE AND/OR MINUTES = 0, NEED TO SET THIS TO 0!
+//            default:
+//                exerciseIntensity = 0;
+//                break;
+        }
+//        Toast.makeText(MainActivity.this,
+//                String.valueOf(exerciseIntensity), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
         userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -46,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 weight = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -60,9 +111,11 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 age = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -74,9 +127,11 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 daysExercise = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -88,45 +143,15 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 minutesExercise = progress;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
 
     }
-
-    // Check which Gender radio button was clicked
-//                switch (view.getId()) {
-//                    case R.id.male_radio_button:
-//                        if (checked)
-//                            gender = 0;
-//                        break;
-//                    case R.id.female_radio_button:
-//                        if (checked)
-//                            gender = 1;
-//                        break;
-//                }
-
-//        // Check which Gender radio button was clicked
-//            switch (view.getId()) {
-//                case R.id.light_exercise_radio_button:
-//                    if (checked)
-//                        exerciseIntensity = 0;
-//                    break;
-//                case R.id.moderate_exercise_radio_button:
-//                    if (checked)
-//                        exerciseIntensity = 1;
-//                    break;
-//                case R.id.heavy_exercise_radio_button:
-//                    if (checked)
-//                        exerciseIntensity = 2;
-//                    break;
-//                case R.id.intense_exercise_radio_button:
-//                    if (checked)
-//                        exerciseIntensity = 3;
-//                    break;
-//            }
 }
