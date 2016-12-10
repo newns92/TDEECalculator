@@ -17,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
     private int daysExercise;
     private int minutesExercise;
     private int exerciseIntensity;
+    private int activityLevel;
     private int selectedGender;
     private int selectedIntensity;
+    private int selectedActivity;
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
 
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
         final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
         final RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
+        final RadioGroup activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
         Button bt = (Button) findViewById(R.id.calculate_button);
 
         /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 //            @Override
 //            public void onClick(View v) {
         selectedGender = genderRadioGroup.getCheckedRadioButtonId();
-//        RadioButton selectedGenderRadioBtn = (RadioButton) findViewById(selectedGender);
 
         // Check which Gender radio button was clicked
         switch (selectedGender) {
@@ -60,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
-//        bt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
         selectedIntensity = intensityRadioGroup.getCheckedRadioButtonId();
 
         switch (selectedIntensity) {
@@ -84,10 +82,23 @@ public class MainActivity extends AppCompatActivity {
 //                exerciseIntensity = 0;
 //                break;
         }
-//        Toast.makeText(MainActivity.this,
-//                String.valueOf(exerciseIntensity), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
+        selectedActivity = activityRadioGroup.getCheckedRadioButtonId();
+
+        switch (selectedActivity) {
+            case R.id.sedentary_radio_button:
+                activityLevel = 0;
+                break;
+            case R.id.lightly_active_radio_button:
+                activityLevel = 1;
+                break;
+            case R.id.active_radio_button:
+                activityLevel = 2;
+                break;
+            case R.id.very_active_radio_button:
+                activityLevel = 3;
+                break;
+        }
 
         /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
         userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -152,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+
 
     }
 }
