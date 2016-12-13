@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/results"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.android.nimz.tdeecalculator.ResultsActivity">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+        <TextView
+        android:id="@+id/bmr_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Maintenance Calories:"/>
+
+        <TextView
+        android:id="@+id/bmr_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
+        tools:text="1800">
+        </TextView>
+
+        <TextView
+        android:id="@+id/tdee_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Maintenance Calories:"/>
+
+        <TextView
+        android:id="@+id/tdee_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
+        tools:text="2600">
+        </TextView>
+
+        <TextView
+        android:id="@+id/goal_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Goal:"/>
+
+        <RadioGroup
+        android:id="@+id/intensity_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+            <RadioButton
+            android:id="@+id/lose_weight_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:text="Lose Weight" />
+            <RadioButton
+            android:id="@+id/maintain_weight_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:text="Maintain Weight" />
+            <RadioButton
+            android:id="@+id/gain_weight_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:text="Gain Weight" />
+        </RadioGroup>
+
+    </LinearLayout>
+</LinearLayout>

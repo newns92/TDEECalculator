@@ -1,7 +1,9 @@
 package com.android.nimz.tdeecalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int selectedGender;
     private int selectedIntensity;
     private int selectedActivity;
+
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
 
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
         final RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
         final RadioGroup activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
-        Button bt = (Button) findViewById(R.id.calculate_button);
 
         /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
 //        bt.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +165,15 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+    }
+    public void openResults(View view) {
+        Button calculateBtn = (Button) findViewById(R.id.calculate_button);
 
-
-
+        calculateBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), ResultsActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
 }
