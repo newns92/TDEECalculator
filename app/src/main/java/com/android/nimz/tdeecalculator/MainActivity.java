@@ -1,12 +1,12 @@
 package com.android.nimz.tdeecalculator;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private int gender;
     private int age;
     private int weight;
+    private int height;
     private int daysExercise;
     private int minutesExercise;
     private int exerciseIntensity;
@@ -36,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /* Find the Views w/in the Main Activity */
-        SeekBar userWeight = (SeekBar) findViewById(R.id.weight_slider);
         SeekBar userAge = (SeekBar) findViewById(R.id.age_slider);
+        SeekBar userWeight = (SeekBar) findViewById(R.id.weight_slider);
+        SeekBar userHeight = (SeekBar) findViewById(R.id.height_slider);
         SeekBar userDaysExercise = (SeekBar) findViewById(R.id.exercise_days_slider);
         SeekBar userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
         final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
@@ -64,6 +66,84 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        /* Set OnSeekBarChangeListener to get the value og user's age */
+        userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                age = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        /* Set OnSeekBarChangeListener to get the value of user's weight */
+        userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                age = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        /* Set OnSeekBarChangeListener to get the value of user's height in inches */
+        userHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                height = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        /* Set OnSeekBarChangeListener to get the value of user's days per week of exercise */
+        userDaysExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                daysExercise = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        /* Set OnSeekBarChangeListener to get the value user's minutes per day of exercise */
+        userMinutesExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                minutesExercise = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+
+
+
+        
         selectedIntensity = intensityRadioGroup.getCheckedRadioButtonId();
 
         switch (selectedIntensity) {
@@ -102,77 +182,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
-        userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                weight = progress;
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
-
-        /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
-        userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                age = progress;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
-
-        /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
-        userDaysExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                daysExercise = progress;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
-
-        /* Set OnSeekBarChangeListener to change the value of the tip % as the slider is used */
-        userMinutesExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                minutesExercise = progress;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
     }
     public void openResults(View view) {
         Button calculateBtn = (Button) findViewById(R.id.calculate_button);
 
         calculateBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ResultsActivity.class);
-                startActivity(myIntent);
+                //Intent myIntent = new Intent(view.getContext(), ResultsActivity.class);
+                //startActivity(myIntent);
+                Toast.makeText(MainActivity.this,
+                        String.valueOf(height), Toast.LENGTH_SHORT).show();
             }
         });
     }
