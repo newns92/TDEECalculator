@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private int selectedGender;
     private int selectedIntensity;
     private int selectedActivity;
+    public int bmr;
 
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
@@ -143,7 +144,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        
+
+
+
         selectedIntensity = intensityRadioGroup.getCheckedRadioButtonId();
 
         switch (selectedIntensity) {
@@ -192,8 +195,30 @@ public class MainActivity extends AppCompatActivity {
                 //Intent myIntent = new Intent(view.getContext(), ResultsActivity.class);
                 //startActivity(myIntent);
                 Toast.makeText(MainActivity.this,
-                        String.valueOf(height), Toast.LENGTH_SHORT).show();
+                        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public int calculateBMR(int gender, int weight, int height, int age) {
+        double genderConstant;
+        double weightConstant;
+        double heightConstant;
+        double ageConstant;
+
+        if (gender == 0) {
+            genderConstant = 655;
+            weightConstant = 4.35;
+            heightConstant = 4.7;
+            ageConstant = 4.7;
+        } else {
+            genderConstant = 65;
+            weightConstant = 6.23;
+            heightConstant = 12.7;
+            ageConstant = 6.8;
+        }
+
+        //actual formula
+        return bmr = (int) (genderConstant + (weightConstant*weight) + (heightConstant*height) - (ageConstant*age));
     }
 }
