@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private int selectedGender;
     private int selectedIntensity;
     private int selectedActivity;
-    public int bmr;
+    private int bmr;
+    private double genderConstant;
     private SeekBar userAge;
     private SeekBar userWeight;
     private SeekBar userHeight;
@@ -63,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 // Check which Gender radio button was clicked
                 switch (selectedGender) {
                     case R.id.male_radio_button:
-                        gender = 0;
+                        genderConstant = 5;
                         break;
                     case R.id.female_radio_button:
-                        gender = 1;
+                        genderConstant = -161;
                         break;
                 }
                 //Toast.makeText(MainActivity.this,
@@ -88,11 +89,12 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this,
                 //       String.valueOf(age), Toast.LENGTH_SHORT).show();
 
-                /* Set OnSeekBarChangeListener to get the value of user's weight */
+                /* Set OnSeekBarChangeListener to get the value of user's weight in pounds */
                 userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        weight = progress;
+                        //convert weight in pounds to kg
+                        weight = progress/2.2;
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -108,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 userHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        height = progress;
+                        //Convert height in inches to centimeters
+                        height = progress*2.54;
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -213,25 +216,34 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    public int calculateBMR(double gender, double weight, double height, double age) {
-        double genderConstant;
-        double weightConstant;
-        double heightConstant;
-        double ageConstant;
+    /**
+     * Method to calculate BMR using Harris–Benedict equations revised by Mifflin + St Jeor in 1990
+     *
+     * @param gender    Binary value of user's gender (0 = male, 1 = female)
+     * @param weight    User's weight in kg
+     * @param height    User's height in cm
+     * @param age       User's age in years
+     */
+    public double calculateBMR(double gender, double weight, double height, double age) {
+//        double genderConstant;
+//        double weightConstant = 10;
+//        double heightConstant = 6.25;
+//        double ageConstant = 5;
 
-        if (gender == 0) {
-            genderConstant = 655;
-            weightConstant = 4.35;
-            heightConstant = 4.7;
-            ageConstant = 4.7;
-        } else {
-            genderConstant = 65;
-            weightConstant = 6.23;
-            heightConstant = 12.7;
-            ageConstant = 6.8;
-        }
+//        if (gender == 0) {
+//            genderConstant = -161.0;
+////            weightConstant = 10;
+////            heightConstant = 4.7;
+////            ageConstant = 4.7;
+//        } else {
+//            genderConstant = 5.0;
+////            weightConstant = 6.23;
+////            heightConstant = 12.7;
+////            ageConstant = 6.8;
+//        }
 
-        //actual formula
-        return bmr = (int) (genderConstant + (weightConstant*weight) + (heightConstant*height) - (ageConstant*age));
+        /* BMR Calculation -  Harris–Benedict equation (1990) */
+        return bmr = (int) ((10*weight) + (6.25*height) - (5*age) + genderConstant);
+        //return bmr = (int) (genderConstant + (weightConstant*weight) + (heightConstant*height) - (ageConstant*age));
     }
 }
