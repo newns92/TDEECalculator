@@ -6,14 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import static java.lang.Integer.valueOf;
 
 public class MainActivity extends AppCompatActivity {
 
     /*********************************************************
      * GLOBAL VARIABLES                         *
      *********************************************************/
-    private int gender;
+    //private int gender;
     private double age;
     private double weight;
     private double height;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar userHeight;
     private SeekBar userDaysExercise;
     private SeekBar userMinutesExercise;
-
+    private TextView userAgeTextView;
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
 
@@ -52,24 +55,16 @@ public class MainActivity extends AppCompatActivity {
         final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
         final RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
         final RadioGroup activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
+        userAgeTextView = (TextView) findViewById(R.id.age_display);
+        //partySizeDisplay = (TextView)findViewById(R.id.party_size_text_view);
 
         /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
         Button calculateBtn = (Button) findViewById(R.id.calculate_button);
 
-        calculateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedGender = genderRadioGroup.getCheckedRadioButtonId();
+//        calculateBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 
-                // Check which Gender radio button was clicked
-                switch (selectedGender) {
-                    case R.id.male_radio_button:
-                        genderConstant = 5;
-                        break;
-                    case R.id.female_radio_button:
-                        genderConstant = -161;
-                        break;
-                }
                 //Toast.makeText(MainActivity.this,
                 //        String.valueOf(gender), Toast.LENGTH_SHORT).show();
 
@@ -78,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         age = progress;
+                        //userAgeTextView.setText(String.valueOf(progress));
+                        displayAge(progress);
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -155,6 +152,23 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this,
 //                        String.valueOf(minutesExercise), Toast.LENGTH_SHORT).show();
 
+//                Toast.makeText(MainActivity.this,
+//                        String.valueOf(exerciseIntensity), Toast.LENGTH_SHORT).show();
+        calculateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedGender = genderRadioGroup.getCheckedRadioButtonId();
+
+                // Check which Gender radio button was clicked
+                switch (selectedGender) {
+                    case R.id.male_radio_button:
+                        genderConstant = 5;
+                        break;
+                    case R.id.female_radio_button:
+                        genderConstant = -161;
+                        break;
+                }
+
                 selectedActivity = activityRadioGroup.getCheckedRadioButtonId();
 
                 switch (selectedActivity) {
@@ -190,13 +204,12 @@ public class MainActivity extends AppCompatActivity {
                         exerciseIntensity = 4;
                         break;
                     //IF DAYS EXERCISE AND/OR MINUTES = 0, NEED TO SET THIS TO 0!
-        //            default:
-        //                exerciseIntensity = 0;
-        //                break;
+                    //            default:
+                    //                exerciseIntensity = 0;
+                    //                break;
                 }
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(exerciseIntensity), Toast.LENGTH_SHORT).show();
-                calculateBMR(gender, weight, height, age);
+
+                calculateBMR(weight, height, age);
                 Toast.makeText(MainActivity.this,
                         String.valueOf(bmr), Toast.LENGTH_SHORT).show();
             }
@@ -216,15 +229,21 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+    /* Set the party size, final overall and per person bill amounts as the party slider is moved */
+    public void displayAge(int progress) {
+        int userAgeDisplay = valueOf(progress);
+        /* If the user attempts to make party size < 1, give error message */
+        userAgeTextView.setText(String.valueOf(userAgeDisplay));
+    }
+
     /**
      * Method to calculate BMR using Harris–Benedict equations revised by Mifflin + St Jeor in 1990
      *
-     * @param gender    Binary value of user's gender (0 = male, 1 = female)
      * @param weight    User's weight in kg
      * @param height    User's height in cm
      * @param age       User's age in years
      */
-    public double calculateBMR(double gender, double weight, double height, double age) {
+    public double calculateBMR(double weight, double height, double age) {
 //        double genderConstant;
 //        double weightConstant = 10;
 //        double heightConstant = 6.25;
