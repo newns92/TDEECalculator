@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar userDaysExercise;
     private SeekBar userMinutesExercise;
     private TextView userAgeTextView;
+    private TextView userWeightTextView;
+    //private TextView userAgeTextView;
+   // private TextView userAgeTextView;
+   // private TextView userAgeTextView;
+    private Button calculateBtn;
+    private RadioGroup genderRadioGroup;
+    private RadioGroup intensityRadioGroup;
+    private RadioGroup activityRadioGroup;
     //private RadioGroup genderRadioGroup;
     //private RadioGroup intensityRadioGroup;
 
@@ -52,113 +60,92 @@ public class MainActivity extends AppCompatActivity {
         userHeight = (SeekBar) findViewById(R.id.height_slider);
         userDaysExercise = (SeekBar) findViewById(R.id.exercise_days_slider);
         userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
-        final RadioGroup genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
-        final RadioGroup intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
-        final RadioGroup activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
+        genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
+        intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
+        activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
         userAgeTextView = (TextView) findViewById(R.id.age_display);
-        //partySizeDisplay = (TextView)findViewById(R.id.party_size_text_view);
+        userWeightTextView = (TextView) findViewById(R.id.weight_display);
+        calculateBtn = (Button) findViewById(R.id.calculate_button);
 
-        /* TESTING GETTING RADIOBUTTON ID AND SETTING INT VALUE FOR GENDER AND INTENSITY */
-        Button calculateBtn = (Button) findViewById(R.id.calculate_button);
+        /* Set OnSeekBarChangeListener to get the value og user's age */
+        userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                age = progress;
+                //userAgeTextView.setText(String.valueOf(progress));
+                displayAge(progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-//        calculateBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        /* Set OnSeekBarChangeListener to get the value of user's weight in pounds */
+        userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //convert weight in pounds to kg
+                weight = progress/2.2;
+                displayWeight(progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-                //Toast.makeText(MainActivity.this,
-                //        String.valueOf(gender), Toast.LENGTH_SHORT).show();
+        /* Set OnSeekBarChangeListener to get the value of user's height in inches */
+        userHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //Convert height in inches to centimeters
+                height = progress*2.54;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-                /* Set OnSeekBarChangeListener to get the value og user's age */
-                userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        age = progress;
-                        //userAgeTextView.setText(String.valueOf(progress));
-                        displayAge(progress);
-                    }
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-                });
-                //Toast.makeText(MainActivity.this,
-                //       String.valueOf(age), Toast.LENGTH_SHORT).show();
+        /* Set OnSeekBarChangeListener to get the value of user's days per week of exercise */
+        userDaysExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                daysExercise = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-                /* Set OnSeekBarChangeListener to get the value of user's weight in pounds */
-                userWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        //convert weight in pounds to kg
-                        weight = progress/2.2;
-                    }
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-                });
-                //Toast.makeText(MainActivity.this,
-                //        String.valueOf(weight), Toast.LENGTH_SHORT).show();
+        /* Set OnSeekBarChangeListener to get the value user's minutes per day of exercise */
+        userMinutesExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                minutesExercise = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-                /* Set OnSeekBarChangeListener to get the value of user's height in inches */
-                userHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        //Convert height in inches to centimeters
-                        height = progress*2.54;
-                    }
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-                });
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(height), Toast.LENGTH_SHORT).show();
-
-                /* Set OnSeekBarChangeListener to get the value of user's days per week of exercise */
-                userDaysExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        daysExercise = progress;
-                    }
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-                });
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(daysExercise), Toast.LENGTH_SHORT).show();
-
-                /* Set OnSeekBarChangeListener to get the value user's minutes per day of exercise */
-                userMinutesExercise.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        minutesExercise = progress;
-                    }
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-                });
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(minutesExercise), Toast.LENGTH_SHORT).show();
-
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(exerciseIntensity), Toast.LENGTH_SHORT).show();
         calculateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedGender = genderRadioGroup.getCheckedRadioButtonId();
-
                 // Check which Gender radio button was clicked
                 switch (selectedGender) {
                     case R.id.male_radio_button:
@@ -170,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 selectedActivity = activityRadioGroup.getCheckedRadioButtonId();
-
+                // Check which Activity Level radio button was clicked
                 switch (selectedActivity) {
                     case R.id.sedentary_radio_button:
                         activityLevel = 0;
@@ -185,11 +172,9 @@ public class MainActivity extends AppCompatActivity {
                         activityLevel = 3;
                         break;
                 }
-//                Toast.makeText(MainActivity.this,
-//                        String.valueOf(activityLevel), Toast.LENGTH_SHORT).show();
 
                 selectedIntensity = intensityRadioGroup.getCheckedRadioButtonId();
-
+                // Check which Exercise Intensity radio button was clicked
                 switch (selectedIntensity) {
                     case R.id.light_exercise_radio_button:
                         exerciseIntensity = 1;
@@ -236,6 +221,13 @@ public class MainActivity extends AppCompatActivity {
         userAgeTextView.setText(String.valueOf(userAgeDisplay));
     }
 
+    /* Set the party size, final overall and per person bill amounts as the party slider is moved */
+    public void displayWeight(int progress) {
+        int userWeightDisplay = valueOf(progress);
+        /* If the user attempts to make party size < 1, give error message */
+        userWeightTextView  .setText(String.valueOf(userWeightDisplay));
+    }
+
     /**
      * Method to calculate BMR using Harris–Benedict equations revised by Mifflin + St Jeor in 1990
      *
@@ -244,23 +236,6 @@ public class MainActivity extends AppCompatActivity {
      * @param age       User's age in years
      */
     public double calculateBMR(double weight, double height, double age) {
-//        double genderConstant;
-//        double weightConstant = 10;
-//        double heightConstant = 6.25;
-//        double ageConstant = 5;
-
-//        if (gender == 0) {
-//            genderConstant = -161.0;
-////            weightConstant = 10;
-////            heightConstant = 4.7;
-////            ageConstant = 4.7;
-//        } else {
-//            genderConstant = 5.0;
-////            weightConstant = 6.23;
-////            heightConstant = 12.7;
-////            ageConstant = 6.8;
-//        }
-
         /* BMR Calculation -  Harris–Benedict equation (1990) */
         return bmr = (int) ((10*weight) + (6.25*height) - (5*age) + genderConstant);
         //return bmr = (int) (genderConstant + (weightConstant*weight) + (heightConstant*height) - (ageConstant*age));
