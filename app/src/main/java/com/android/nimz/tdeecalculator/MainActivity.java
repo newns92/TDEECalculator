@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     //private SeekBar userMinutesExercise;
     private TextView userAgeTextView;
     private TextView userWeightTextView;
-    private TextView userHeightTextView;
+    private TextView userHeightFootTextView;
+    private TextView userHeightInchesTextView;
     private TextView exerciseDaysTextView;
     private TextView exerciseMinutesTextView;
 //    private Button calculateBtn;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
         userAgeTextView = (TextView) findViewById(R.id.age_display);
         userWeightTextView = (TextView) findViewById(R.id.weight_display);
-        userHeightTextView = (TextView) findViewById(R.id.height_display_foot);
+        userHeightFootTextView = (TextView) findViewById(R.id.height_display_foot);
+        userHeightInchesTextView = (TextView) findViewById(R.id.height_display_inches);
         exerciseDaysTextView = (TextView) findViewById(R.id.exercise_days_display);
         exerciseMinutesTextView = (TextView) findViewById(R.id.exercise_minutes_display);
         Button calculateBtn = (Button) findViewById(R.id.calculate_button);
@@ -219,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
-
     /* Set the user's age as the age slider is moved */
     public void displayAge(int progress) {
         int userAge = valueOf(progress);
@@ -237,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
     public void displayHeight(int progress) {
         int userHeight = valueOf(progress);
         /* If the user attempts to make party size < 1, give error message */
-        userHeightTextView.setText(String.valueOf(userHeight));
+        userHeightFootTextView.setText(String.valueOf(userHeight/12) + "'");
+        userHeightInchesTextView.setText(String.valueOf(userHeight%12) + "''");
     }
     /* Set the user's days of exercise as the exercise days slider is moved */
     public void displayDaysExercise(int progress) {
