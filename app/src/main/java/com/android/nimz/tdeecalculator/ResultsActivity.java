@@ -5,12 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioGroup;
 
 public class ResultsActivity extends AppCompatActivity {
-    /*********************************************************
-     //         * GLOBAL VARIABLES                         *
-     //         *********************************************************/
-
-        /********************************************************
-         ********************************************************/
+/*********************************************************
+*               GLOBAL VARIABLES                         *
+*********************************************************/
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {

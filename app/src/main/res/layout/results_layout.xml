@@ -28,7 +28,7 @@
         android:text="Maintenance Calories:"/>
 
         <TextView
-        android:id="@+id/bmr_calories"
+        android:id="@+id/bmr_calories_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -44,7 +44,7 @@
         android:text="Maintenance Calories:"/>
 
         <TextView
-        android:id="@+id/tdee_calories"
+        android:id="@+id/tdee_calories_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
