@@ -69,7 +69,7 @@
                 android:id="@+id/age_display"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="24"
+                android:text="0"
                 android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
@@ -105,7 +105,7 @@
                 android:layout_height="match_parent"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                tools:text="175"
+                android:text="0"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -145,7 +145,7 @@
                 android:id="@+id/height_display_foot"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                tools:text="6'"
+                android:text="0'"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -185,7 +185,7 @@
                 android:id="@+id/exercise_days_display"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                tools:text="5"
+                android:text="0"
                 android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
@@ -218,7 +218,7 @@
                 android:id="@+id/exercise_minutes_display"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                tools:text="65"
+                android:text="0"
                 android:layout_marginBottom="8dp"/>
 
         </LinearLayout>

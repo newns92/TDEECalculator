@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar userMinutesExercise;
     private TextView userAgeTextView;
     private TextView userWeightTextView;
-    //private TextView userAgeTextView;
-   // private TextView userAgeTextView;
-   // private TextView userAgeTextView;
+    private TextView userHeightTextView;
+    private TextView exerciseDaysTextView;
+    private TextView exerciseMinutesTextView;
     private Button calculateBtn;
     private RadioGroup genderRadioGroup;
     private RadioGroup intensityRadioGroup;
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
         userAgeTextView = (TextView) findViewById(R.id.age_display);
         userWeightTextView = (TextView) findViewById(R.id.weight_display);
+        userHeightTextView = (TextView) findViewById(R.id.height_display_foot);
+        exerciseDaysTextView = (TextView) findViewById(R.id.exercise_days_display);
+        exerciseMinutesTextView = (TextView) findViewById(R.id.exercise_minutes_display);
         calculateBtn = (Button) findViewById(R.id.calculate_button);
 
         /* Set OnSeekBarChangeListener to get the value og user's age */
@@ -105,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //Convert height in inches to centimeters
                 height = progress*2.54;
+                displayHeight(progress);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -119,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 daysExercise = progress;
+                displayDaysExercise(progress);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -133,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 minutesExercise = progress;
+                displayMinutesExercise(progress);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -216,16 +222,37 @@ public class MainActivity extends AppCompatActivity {
 
     /* Set the party size, final overall and per person bill amounts as the party slider is moved */
     public void displayAge(int progress) {
-        int userAgeDisplay = valueOf(progress);
+        int userAge = valueOf(progress);
         /* If the user attempts to make party size < 1, give error message */
-        userAgeTextView.setText(String.valueOf(userAgeDisplay));
+        userAgeTextView.setText(String.valueOf(userAge));
     }
 
     /* Set the party size, final overall and per person bill amounts as the party slider is moved */
     public void displayWeight(int progress) {
-        int userWeightDisplay = valueOf(progress);
+        int userWeight = valueOf(progress);
         /* If the user attempts to make party size < 1, give error message */
-        userWeightTextView  .setText(String.valueOf(userWeightDisplay));
+        userWeightTextView.setText(String.valueOf(userWeight));
+    }
+
+    /* Set the party size, final overall and per person bill amounts as the party slider is moved */
+    public void displayHeight(int progress) {
+        int userHeight = valueOf(progress);
+        /* If the user attempts to make party size < 1, give error message */
+        userHeightTextView.setText(String.valueOf(userHeight));
+    }
+
+    /* Set the party size, final overall and per person bill amounts as the party slider is moved */
+    public void displayDaysExercise(int progress) {
+        int userDaysExercise = valueOf(progress);
+        /* If the user attempts to make party size < 1, give error message */
+        exerciseDaysTextView.setText(String.valueOf(userDaysExercise));
+    }
+
+    /* Set the party size, final overall and per person bill amounts as the party slider is moved */
+    public void displayMinutesExercise(int progress) {
+        int userMinutesExercise = valueOf(progress);
+        /* If the user attempts to make party size < 1, give error message */
+        exerciseMinutesTextView.setText(String.valueOf(userMinutesExercise));
     }
 
     /**
