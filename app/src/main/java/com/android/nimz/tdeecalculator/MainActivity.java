@@ -23,11 +23,12 @@ public class MainActivity extends AppCompatActivity {
     public int daysExercise;
     public int minutesExercise;
     public int exerciseIntensity;
-    public int activityLevel;
+    public double activityLevel;
 //    public int selectedGender;
 //    public int selectedIntensity;
 //    public int selectedActivity;
     public int bmr;
+    public int tdee;
     private double genderConstant;
 //    private SeekBar userAge;
 //    private SeekBar userWeight;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         exerciseDaysTextView = (TextView) findViewById(R.id.exercise_days_display);
         exerciseMinutesTextView = (TextView) findViewById(R.id.exercise_minutes_display);
         Button calculateBtn = (Button) findViewById(R.id.calculate_button);
+        Button resetBtn = (Button) findViewById(R.id.reset_button);
 
         /* Set OnSeekBarChangeListener to get the value of user's age and display as SeekBar moves*/
         userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -165,20 +167,41 @@ public class MainActivity extends AppCompatActivity {
                         genderConstant = -161;
                         break;
                 }
+                calculateBMR(weight, height, age);
+                Toast.makeText(MainActivity.this,
+                        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check which Gender radio button was clicked and set constant for BMR calculation
+                switch (genderRadioGroup.getCheckedRadioButtonId()) {
+                    case R.id.male_radio_button:
+                        genderConstant = 5;
+                        break;
+                    case R.id.female_radio_button:
+                        genderConstant = -161;
+                        break;
+                }
                 /* Check which Activity Level radio button was clicked and set constant for TDEE
                     calculation */
                 switch (activityRadioGroup.getCheckedRadioButtonId()) {
                     case R.id.sedentary_radio_button:
-                        activityLevel = 0;
+                        activityLevel = 1.2;
                         break;
                     case R.id.lightly_active_radio_button:
-                        activityLevel = 1;
+                        activityLevel = 1.375;
+                        break;
+                    case R.id.moderate_exercise_radio_button:
+                        activityLevel = 1.55;
                         break;
                     case R.id.active_radio_button:
-                        activityLevel = 2;
+                        activityLevel = 1.725;
                         break;
                     case R.id.very_active_radio_button:
-                        activityLevel = 3;
+                        activityLevel = 1.9;
                         break;
                 }
                 /* Check which Exercise Intensity radio button was clicked and set constant for TDEE
@@ -203,8 +226,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 calculateBMR(weight, height, age);
+                calculateTDEE(bmr, activityLevel);
                 Toast.makeText(MainActivity.this,
-                        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+                        String.valueOf(tdee), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -227,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
         /* If the user attempts to make party size < 1, give error message */
         userAgeTextView.setText(String.valueOf(userAge));
     }
-
     /* Set the user's weight as the weight slider is moved */
     public void displayWeight(int progress) {
         int userWeight = valueOf(progress);
@@ -263,5 +286,15 @@ public class MainActivity extends AppCompatActivity {
     public double calculateBMR(double weight, double height, double age) {
         /* BMR Calculation -  Harris–Benedict equation (1990) */
         return bmr = (int) ((10*weight) + (6.25*height) - (5*age) + genderConstant);
+    }
+    /**
+     * Method to calculate BMR using Harris–Benedict equations revised by Mifflin + St Jeor in 1990
+     *
+     * @param bmr               User's BMR calculated with calculateBMR button
+     * @param activityLevel     User's activity level constant
+     */
+    public double calculateTDEE(double bmr, double activityLevel) {
+        /* TDEE Calculation -  Harris–Benedict equation (1990) */
+        return tdee = (int) (bmr*activityLevel);
     }
 }
