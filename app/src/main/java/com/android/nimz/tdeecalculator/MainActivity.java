@@ -1,5 +1,6 @@
 package com.android.nimz.tdeecalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -168,8 +169,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 calculateBMR(weight, height, age);
-                Toast.makeText(MainActivity.this,
-                        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,
+                //        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+                Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
+                // Start the new activity
+                startActivity(resultsIntent);
             }
         });
 
@@ -232,7 +236,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void openResults(View view) {
+
+public void openResults(View view) {
+
+        // Find the View that shows the family category
+        //TextView results = (TextView) findViewById(R.id.results_layout);
+        // Set a click listener on that View
+        //family.setOnClickListener(new OnClickListener() {
+        // The code in this method will be executed when the family category is clicked on.
+         //   @Override
+         //   public void onClick(View view) {
+            // Create a new intent to open the {@link FamilyActivity}
+//            Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
+//            // Start the new activity
+//            startActivity(resultsIntent);
+//            }
+        //});
 //        Button calculateBtn = (Button) findViewById(R.id.calculate_button);
 //
 //        calculateBtn.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 ////                        String.valueOf(gender), Toast.LENGTH_SHORT).show();
 //            }
 //        });
-    }
+}
     /* Set the user's age as the age slider is moved */
     public void displayAge(int progress) {
         int userAge = valueOf(progress);

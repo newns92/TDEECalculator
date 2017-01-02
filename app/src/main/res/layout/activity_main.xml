@@ -152,7 +152,7 @@
                 android:id="@+id/height_display_inches"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="2''"
+                android:text="0''"
                 android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
