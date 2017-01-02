@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static java.lang.Integer.valueOf;
 
@@ -18,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
      * GLOBAL VARIABLES                         *
      *********************************************************/
     //private int gender;
-    private double age;
-    private double weight;
-    private double height;
+    public double age;
+    public double weight;
+    public double height;
     public int daysExercise;
     public int minutesExercise;
     public int exerciseIntensity;
@@ -28,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
 //    public int selectedGender;
 //    public int selectedIntensity;
 //    public int selectedActivity;
-    public int bmr;
-    public int tdee;
-    private double genderConstant;
+    public static int bmr;
+    public static int tdee;
+    public double genderConstant;
 //    private SeekBar userAge;
 //    private SeekBar userWeight;
 //    private SeekBar userHeight;
@@ -168,29 +167,6 @@ public class MainActivity extends AppCompatActivity {
                         genderConstant = -161;
                         break;
                 }
-                calculateBMR(weight, height, age);
-                //Toast.makeText(MainActivity.this,
-                //        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
-                Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
-                // Start the new activity
-                startActivity(resultsIntent);
-            }
-        });
-
-        resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Check which Gender radio button was clicked and set constant for BMR calculation
-                switch (genderRadioGroup.getCheckedRadioButtonId()) {
-                    case R.id.male_radio_button:
-                        genderConstant = 5;
-                        break;
-                    case R.id.female_radio_button:
-                        genderConstant = -161;
-                        break;
-                }
-                /* Check which Activity Level radio button was clicked and set constant for TDEE
-                    calculation */
                 switch (activityRadioGroup.getCheckedRadioButtonId()) {
                     case R.id.sedentary_radio_button:
                         activityLevel = 1.2;
@@ -231,38 +207,24 @@ public class MainActivity extends AppCompatActivity {
 
                 calculateBMR(weight, height, age);
                 calculateTDEE(bmr, activityLevel);
-                Toast.makeText(MainActivity.this,
-                        String.valueOf(tdee), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,
+                //        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+                /* Create new intent to open up new activity and screen with calculation results */
+                Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
+                // Start the new activity
+                startActivity(resultsIntent);
+            }
+        });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //clearAll();
             }
         });
     }
 
-public void openResults(View view) {
-
-        // Find the View that shows the family category
-        //TextView results = (TextView) findViewById(R.id.results_layout);
-        // Set a click listener on that View
-        //family.setOnClickListener(new OnClickListener() {
-        // The code in this method will be executed when the family category is clicked on.
-         //   @Override
-         //   public void onClick(View view) {
-            // Create a new intent to open the {@link FamilyActivity}
-//            Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
-//            // Start the new activity
-//            startActivity(resultsIntent);
-//            }
-        //});
-//        Button calculateBtn = (Button) findViewById(R.id.calculate_button);
-//
-//        calculateBtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                //Intent myIntent = new Intent(view.getContext(), ResultsActivity.class);
-//                //startActivity(myIntent);
-//                calculateBMR(weight, height, age);
-////                Toast.makeText(MainActivity.this,
-////                        String.valueOf(gender), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+public void clearAll(View view) {
 }
     /* Set the user's age as the age slider is moved */
     public void displayAge(int progress) {
