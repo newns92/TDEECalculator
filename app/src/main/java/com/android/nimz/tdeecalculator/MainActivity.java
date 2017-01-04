@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     /*********************************************************
      * GLOBAL VARIABLES                         *
      *********************************************************/
-    //private int gender;
     public double age;
     public double weight;
     public double height;
@@ -24,29 +23,25 @@ public class MainActivity extends AppCompatActivity {
     public int minutesExercise;
     public int exerciseIntensity;
     public double activityLevel;
-//    public int selectedGender;
-//    public int selectedIntensity;
-//    public int selectedActivity;
     public static int bmr;
     public static int tdee;
     public double genderConstant;
-//    private SeekBar userAge;
-//    private SeekBar userWeight;
-//    private SeekBar userHeight;
-//    private SeekBar userDaysExercise;
-    //private SeekBar userMinutesExercise;
+    private SeekBar userAge;
+    private SeekBar userWeight;
+    private SeekBar userHeight;
+    private SeekBar userDaysExercise;
+    private SeekBar userMinutesExercise;
     private TextView userAgeTextView;
     private TextView userWeightTextView;
     private TextView userHeightFootTextView;
     private TextView userHeightInchesTextView;
     private TextView exerciseDaysTextView;
     private TextView exerciseMinutesTextView;
-//    private Button calculateBtn;
+    private Button calculateTDEEBtn;
+    private Button resetBtn;
     private RadioGroup genderRadioGroup;
     private RadioGroup intensityRadioGroup;
     private RadioGroup activityRadioGroup;
-    //private RadioGroup genderRadioGroup;
-    //private RadioGroup intensityRadioGroup;
 
     /********************************************************
      ********************************************************/
@@ -57,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /* Find the Views w/in the Main Activity */
-        SeekBar userAge = (SeekBar) findViewById(R.id.age_slider);
-        SeekBar userWeight = (SeekBar) findViewById(R.id.weight_slider);
-        SeekBar userHeight = (SeekBar) findViewById(R.id.height_slider);
-        SeekBar userDaysExercise = (SeekBar) findViewById(R.id.exercise_days_slider);
-        SeekBar userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
+        userAge = (SeekBar) findViewById(R.id.age_slider);
+        userWeight = (SeekBar) findViewById(R.id.weight_slider);
+        userHeight = (SeekBar) findViewById(R.id.height_slider);
+        userDaysExercise = (SeekBar) findViewById(R.id.exercise_days_slider);
+        userMinutesExercise = (SeekBar) findViewById(R.id.exercise_minutes_slider);
         genderRadioGroup = (RadioGroup) findViewById(R.id.gender_group);
         intensityRadioGroup = (RadioGroup) findViewById(R.id.intensity_group);
         activityRadioGroup = (RadioGroup) findViewById(R.id.activity_group);
@@ -71,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         userHeightInchesTextView = (TextView) findViewById(R.id.height_display_inches);
         exerciseDaysTextView = (TextView) findViewById(R.id.exercise_days_display);
         exerciseMinutesTextView = (TextView) findViewById(R.id.exercise_minutes_display);
-        Button calculateBtn = (Button) findViewById(R.id.calculate_button);
-        Button resetBtn = (Button) findViewById(R.id.reset_button);
+        calculateTDEEBtn = (Button) findViewById(R.id.calculate_button);
+        resetBtn = (Button) findViewById(R.id.reset_button);
 
         /* Set OnSeekBarChangeListener to get the value of user's age and display as SeekBar moves*/
         userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -155,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* When Calculate button is clicked, open up results fragment/activity/layout and display
             BMR and TDEE to user (TO-DO) */
-        calculateBtn.setOnClickListener(new View.OnClickListener() {
+        calculateTDEEBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Check which Gender radio button was clicked and set constant for BMR calculation
@@ -209,22 +204,30 @@ public class MainActivity extends AppCompatActivity {
                 calculateTDEE(bmr, activityLevel);
                 //Toast.makeText(MainActivity.this,
                 //        String.valueOf(bmr), Toast.LENGTH_SHORT).show();
+
                 /* Create new intent to open up new activity and screen with calculation results */
                 Intent resultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
                 // Start the new activity
                 startActivity(resultsIntent);
             }
         });
-
-        resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //clearAll();
-            }
-        });
     }
 
 public void clearAll(View view) {
+    userAge.setProgress(0);
+    userWeight.setProgress(0);
+    userHeight.setProgress(0);
+    userDaysExercise.setProgress(0);
+    userMinutesExercise.setProgress(0);
+    userAgeTextView.setText("0");
+    userWeightTextView.setText("0");
+    userHeightFootTextView.setText("0");
+    userHeightInchesTextView.setText("0");
+    exerciseDaysTextView.setText("0");
+    exerciseMinutesTextView.setText("0");
+    genderRadioGroup.clearCheck();
+    activityRadioGroup.clearCheck();
+    intensityRadioGroup.clearCheck();
 }
     /* Set the user's age as the age slider is moved */
     public void displayAge(int progress) {

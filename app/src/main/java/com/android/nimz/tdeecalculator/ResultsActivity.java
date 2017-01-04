@@ -93,7 +93,13 @@ public class ResultsActivity extends AppCompatActivity {
 //        });
 
         }
-
+    public void clearAllResults(View view) {
+        userBMRTextView.setText("0");
+        userTDEETextView.setText("0");
+        goalCaloriesTextView.setText("0");
+        goalRadioGroup.clearCheck();
+        goalSpeedRadioGroup.clearCheck();
+    }
     /**
    * Method to calculate BMR using Harris–Benedict equations revised by Mifflin + St Jeor in 1990
     *

@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:onClick="clearAll"
+                android:onClick="clearAllResults"
                 android:text="Reset" />
 
             <Button
@@ -169,7 +169,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:onClick="openResults"
                 android:text="Calculate" />
         </LinearLayout>
     </LinearLayout>
