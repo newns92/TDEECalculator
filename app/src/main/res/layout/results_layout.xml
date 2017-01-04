@@ -57,10 +57,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:paddingTop="16dp"
         android:text="Goal:"/>
 
         <RadioGroup
-        android:id="@+id/intensity_group"
+        android:id="@+id/goal_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -88,5 +89,86 @@
             android:text="Gain Weight" />
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/goal_speed_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:text="At what rate do you want to meet your goal?:"/>
+
+        <RadioGroup
+            android:id="@+id/goal_speed_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+            <RadioButton
+                android:id="@+id/aggressive_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="Aggressive" />
+            <RadioButton
+                android:id="@+id/suggested_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="Suggested" />
+            <RadioButton
+                android:id="@+id/slowly_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="Slow" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/goal_calories_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:text="Calories needed to reach goal:"/>
+
+        <TextView
+            android:id="@+id/goal_calories_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="8dp"
+            tools:text="2100">
+        </TextView>
+
+
+        <LinearLayout
+            android:id="@+id/buttons_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:layout_alignParentLeft="true">
+
+            <Button
+                android:id="@+id/results_reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:onClick="clearAll"
+                android:text="Reset" />
+
+            <Button
+                android:id="@+id/results_calculate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:onClick="openResults"
+                android:text="Calculate" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
