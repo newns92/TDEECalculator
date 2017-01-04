@@ -104,12 +104,12 @@
             android:orientation="horizontal"
             android:paddingTop="8dp">
             <RadioButton
-                android:id="@+id/aggressive_radio_button"
+                android:id="@+id/slowly_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Aggressive" />
+                android:text="Slow" />
             <RadioButton
                 android:id="@+id/suggested_radio_button"
                 android:layout_width="wrap_content"
@@ -118,12 +118,14 @@
                 android:layout_weight="1"
                 android:text="Suggested" />
             <RadioButton
-                android:id="@+id/slowly_radio_button"
+                android:id="@+id/aggressive_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Slow" />
+                android:text="Aggressive" />
+
+
         </RadioGroup>
 
         <TextView
