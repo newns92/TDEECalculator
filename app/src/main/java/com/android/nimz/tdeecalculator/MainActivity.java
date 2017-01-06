@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.lightly_active_radio_button:
                         activityLevel = 1.375;
                         break;
-                    case R.id.moderate_exercise_radio_button:
+                    case R.id.moderately_active_radio_button:
                         activityLevel = 1.55;
                         break;
                     case R.id.active_radio_button:
