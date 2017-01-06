@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         userAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                age = progress;
-                displayAge(progress);
+                age = progress + 13;
+                displayAge(progress+13);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //convert weight in pounds to kg
-                weight = progress/2.2;
-                displayWeight(progress);
+                weight = (progress + 75)/2.2;
+                displayWeight(progress + 75);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //Convert height in inches to centimeters
-                height = progress*2.54;
-                displayHeight(progress);
+                height = (progress + 48)*2.54;
+                displayHeight(progress + 48);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -219,10 +219,10 @@ public void clearAll(View view) {
     userHeight.setProgress(0);
     userDaysExercise.setProgress(0);
     userMinutesExercise.setProgress(0);
-    userAgeTextView.setText("0");
-    userWeightTextView.setText("0");
-    userHeightFootTextView.setText("0");
-    userHeightInchesTextView.setText("0");
+    userAgeTextView.setText("13");
+    userWeightTextView.setText("75");
+    userHeightFootTextView.setText("4'");
+    userHeightInchesTextView.setText("0''");
     exerciseDaysTextView.setText("0");
     exerciseMinutesTextView.setText("0");
     genderRadioGroup.clearCheck();
