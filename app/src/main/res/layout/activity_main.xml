@@ -235,7 +235,7 @@
         android:id="@+id/activity_level_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How would you describe your daily activity level?"/>
+        android:text="How active would you describe your daily activity level?"/>
 
         <RadioGroup
             android:id="@+id/activity_group"
@@ -257,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Lightly Active"
+                android:text="Lightly"
                 android:textSize="12sp"/>
             <RadioButton
                 android:id="@+id/moderately_active_radio_button"
@@ -265,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Moderately Active"
+                android:text="Moderately"
                 android:textSize="12sp"/>
             <RadioButton
                 android:id="@+id/active_radio_button"
@@ -281,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Very Active"
+                android:text="Very"
                 android:textSize="12sp"/>
         </RadioGroup>
 
@@ -303,28 +303,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Light" />
+                android:text="Light"
+                android:textSize="12sp"/>
             <RadioButton
                 android:id="@+id/moderate_exercise_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Moderate" />
+                android:text="Moderate"
+                android:textSize="12sp"/>
             <RadioButton
                 android:id="@+id/heavy_exercise_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Heavy" />
+                android:text="Heavy"
+                android:textSize="12sp"/>
             <RadioButton
                 android:id="@+id/intense_exercise_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:text="Intense" />
+                android:text="Intense"
+                android:textSize="12sp"/>
         </RadioGroup>
 
         <LinearLayout
@@ -341,7 +345,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:onClick="clearAll"
                 android:text="Reset" />
 
             <Button

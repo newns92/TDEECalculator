@@ -23,6 +23,7 @@ public class ResultsActivity extends AppCompatActivity {
     private int additionalGoalCalories;
     private int goalCalories;
     private Button resultsCalculateBtn;
+    private Button resultsResetBtn;
 /********************************************************
  ********************************************************/
 
@@ -33,11 +34,14 @@ public class ResultsActivity extends AppCompatActivity {
 
         /* Find the Views w/in the Main Activity */
         resultsCalculateBtn = (Button) findViewById(R.id.results_calculate_button);
+        resultsResetBtn = (Button) findViewById(R.id.results_reset_button);
         goalRadioGroup = (RadioGroup) findViewById(R.id.goal_group);
         goalSpeedRadioGroup = (RadioGroup) findViewById(R.id.goal_speed_group);
         goalCaloriesTextView = (TextView) findViewById(R.id.goal_calories_display);
         userBMRTextView = (TextView) findViewById(R.id.bmr_calories_display);
         userTDEETextView = (TextView) findViewById(R.id.tdee_calories_display);
+        final MainActivity  MainAct2 = new MainActivity();
+
 
         // Set value of TextViews with BMR and TDEE calculated from Main Activity interface
         userBMRTextView.setText(String.valueOf(bmr));
@@ -75,6 +79,13 @@ public class ResultsActivity extends AppCompatActivity {
                 // Calculate calories to meet user's goal based on their stats and display the amount
                 calculateGoalCalories(tdee, goalSign, additionalGoalCalories);
                 goalCaloriesTextView.setText(String.valueOf(goalCalories));
+            }
+        });
+
+        resultsResetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllResults(findViewById(R.id.results_layout));
             }
         });
     }

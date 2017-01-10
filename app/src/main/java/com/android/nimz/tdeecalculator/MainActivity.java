@@ -211,6 +211,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(resultsIntent);
             }
         });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAll(findViewById(R.id.activity_main));
+            }
+        });
     }
 
 public void clearAll(View view) {
