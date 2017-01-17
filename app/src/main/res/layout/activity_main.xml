@@ -23,7 +23,8 @@
             android:id="@+id/gender_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select your gender:"/>
+            android:text="Select your gender:"
+            android:textStyle="bold"/>
 
         <RadioGroup
             android:id="@+id/gender_group"
@@ -63,7 +64,8 @@
                 android:text="Select your age:"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/age_display"
@@ -97,7 +99,8 @@
                 android:text="Select your weight:"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/weight_display"
@@ -112,7 +115,7 @@
                 android:id="@+id/weight_display_units"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="lbs/kgs"
+                android:text="lbs"
                 android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
@@ -139,7 +142,8 @@
                 android:text="Select your height:"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/height_display_foot"
@@ -179,7 +183,8 @@
                 android:text="How many day per week of exercise?"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/exercise_days_display"
@@ -212,7 +217,8 @@
                 android:text="How many total minutes of exercise per day?"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/exercise_minutes_display"
@@ -235,7 +241,8 @@
         android:id="@+id/activity_level_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How active would you describe your daily activity level?"/>
+        android:text="How active would you describe your daily activity level?"
+            android:textStyle="bold"/>
 
         <RadioGroup
             android:id="@+id/activity_group"
@@ -289,7 +296,8 @@
             android:id="@+id/exercise_intensity_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="How intense are your exercise sessions?"/>
+            android:text="How intense are your exercise sessions?"
+            android:textStyle="bold"/>
 
         <RadioGroup
             android:id="@+id/intensity_group"

@@ -25,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Maintenance Calories:"/>
+        android:text="Maintenance Calories:"
+        android:textStyle="bold"/>
 
         <TextView
         android:id="@+id/bmr_calories_display"
@@ -41,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Maintenance Calories:"/>
+        android:text="Maintenance Calories:"
+        android:textStyle="bold"/>
 
         <TextView
         android:id="@+id/tdee_calories_display"
@@ -134,7 +136,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="16dp"
-            android:text="Calories needed to reach goal:"/>
+            android:text="Calories needed to reach goal:"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/goal_calories_display"
